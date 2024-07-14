@@ -79,23 +79,55 @@ def get_gpu_info_windows():
 
 
 def get_gpu_info_linux():
+    global manufacturer, product
     try:
-        lshw_output = subprocess.check_output(['lshw', '-C', 'display'], universal_newlines=True)
+        output = subprocess.check_output(['lshw', '-C', 'display'], universal_newlines=True)
 
-        product_info = [line.strip() for line in lshw_output.splitlines() if 'vendor:' in line.lower()]
+        lines = output.strip().split('\n')
 
-        print("\nGPU manufacture: ")
-        if product_info:
-            for info in product_info:
-                print(info)
+        for line in lines:
+            if 'product' in line:
+                product = line.split(': ')[1].strip()
+            elif 'vendor' in line:
+                manufacturer = line.split(': ')[1].strip()
+        if product and manufacturer:
+            print(f"Chipset Model: {product}")
+            print(f"Manufacturer: {manufacturer}")
+        else:
+            print("Required information not found.")
+
+        return chipset_model, manufacturer
+
     except subprocess.CalledProcessError as e:
-        print("Error executing command:", e)
+        print("Error:", e)
+        return None, None
 
 
 def get_gpu_info_macos():
-    command = ['/usr/sbin/system_profiler', 'SPDisplaysDataType']
-    output = subprocess.check_output(command).decode('utf-8')
-    print(output)
+    global chipset_model, manufacturer
+    try:
+        command = ['/usr/sbin/system_profiler', 'SPDisplaysDataType']
+        output = subprocess.check_output(command, universal_newlines=True)
+
+        lines = output.strip().split('\n')
+
+        for line in lines:
+            if 'Chipset Model' in line:
+                chipset_model = line.split(': ')[1].strip()
+            elif 'Vendor' in line:
+                manufacturer = line.split(': ')[1].strip()
+
+        if chipset_model and manufacturer:
+            print(f"Chipset Model: {chipset_model}")
+            print(f"Manufacturer: {manufacturer}")
+        else:
+            print("Required information not found.")
+
+        return chipset_model, manufacturer
+
+    except subprocess.CalledProcessError as e:
+        print("Error:", e)
+        return None, None
 
 
 platform = platform.system()
@@ -104,7 +136,7 @@ if platform == "Windows":
     get_gpu_info_windows()
 elif platform == "Linux":
     get_gpu_info_linux()
-elif platform == "MacOS":
+elif platform == "Darwin":
     get_gpu_info_macos()
 else:
     print("Your System Could Not be Identified")
