@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="153ad5e0-8912-479a-be88-bc2fb342a26e" name="Changes" comment="question Gpu">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="153ad5e0-8912-479a-be88-bc2fb342a26e" name="Changes" comment="linux integrated graphics">
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +169,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720980065830</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="linux integrated graphics">
+      <option name="closed" value="true" />
+      <created>1720980111284</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1720980111284</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -177,7 +185,8 @@
     <MESSAGE value="first" />
     <MESSAGE value="question Cpu" />
     <MESSAGE value="question Gpu" />
-    <option name="LAST_COMMIT_MESSAGE" value="question Gpu" />
+    <MESSAGE value="linux integrated graphics" />
+    <option name="LAST_COMMIT_MESSAGE" value="linux integrated graphics" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

@@ -87,7 +87,7 @@ def get_gpu_info_windows():
 
 
 def get_gpu_info_linux():
-    global manufacturer, product
+    global manufacturer, product, intel
     try:
         output = subprocess.check_output(['lshw', '-C', 'display'], universal_newlines=True)
 
