@@ -18,6 +18,7 @@ def get_cpu_info():
     else:
         return cpu_name  # Falls das Muster nicht gefunden wird, gib den ganzen Namen zurück
 
+
 detected_cpu = get_cpu_info()
 cpu_model = get_cpu_info()
 
@@ -36,6 +37,7 @@ print(f"Code Name: {Code_Name()}")
 
 
 def get_gpu_info_windows():
+    global intel
     try:
         # Befehl für wmic, um die Informationen über die Grafikkarte zu erhalten
         command = 'wmic path win32_videocontroller get caption'
@@ -65,10 +67,12 @@ def get_gpu_info_windows():
                     csv_file = csv.reader(open('intel-processor/intel_core_processors_v1_8.csv', "r"), delimiter=",")
                     for row in csv_file:
                         if cpu_model == row[0]:
-                            print(row[15])
-                            ig = True
-                    product_name = info.replace('Intel', '').strip()
-                    gpu_info.append((product_name, manufacturer))
+                            if not "N/A" == row[15]:
+                                intel = row[15]
+                                print(f"IGPU: {intel}")
+                                ig = True
+                            else:
+                                print("No Integrated Graphics")
 
         # Wenn eine oder mehrere Grafikkarten gefunden wurden, gib sie aus
         if gpu_info:
@@ -149,8 +153,6 @@ def get_gpu_info_macos():
         return None, None
 
 
-
-
 def questiongpu():
     global gpu_model, detected_gpu
     platform_name = platform.system()
@@ -162,18 +164,38 @@ def questiongpu():
         detected_gpu = get_gpu_info_macos()
     else:
         print("Your System Could Not be Identified")
+
     gpu_model = detected_gpu
-    question = input(f"Is the {gpu_model} your GPU [y/n]: ")
+
+    question = input(f"Do you want to use Integrated Grafics [y/n]:")
 
     if question.lower() == "y":
-        if gpu_model == detected_gpu:
-            print("yay")
+        iguse = True
+        gpu_model = intel
+        questiongpu2()
     elif question.lower() == "n":
-        gpu_model = input("Please enter your CPU (e.g. i5-12400): ")
-        questiongpu()
+        questiongpu2()
+        iguse = False
     else:
         print("Please enter y/n")
         questiongpu()
+
+def questiongpu2():
+    global gpu_model
+
+    question2 = input(f"Is the {gpu_model} your GPU [y/n]: ")
+    if question2.lower() == "y":
+        if gpu_model == detected_gpu:
+            print("yay")
+    elif question2.lower() == "n":
+        gpu_model2 = input("Please enter your GPU (e.g. RTX 4090): ")
+        if gpu_model2 == "":
+            print("Please enter a valid Graphics-card!")
+        questiongpu2()
+    else:
+        print("Please enter y/n")
+        questiongpu2()
+
 
 def questioncpu():
     global cpu_model, cpu_name
@@ -188,7 +210,9 @@ def questioncpu():
             print(f"Code Name: {Code_Name()}")
             questiongpu()
     elif question.lower() == "n":
-        cpu_name = input("Please enter your CPU (e.g. i5-12400): ")
+        cpu_name2 = input("Please enter your CPU (e.g. i5-12400): ")
+        if cpu_name2 == "":
+            print("Please Enter a valid CPU!")
         cpu_model = get_cpu_info()
         questioncpu()
     else:
@@ -197,4 +221,3 @@ def questioncpu():
 
 
 questioncpu()
-
