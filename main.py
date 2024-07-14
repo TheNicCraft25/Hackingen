@@ -108,6 +108,7 @@ def get_gpu_info_linux():
                     manufacturer = 'AMD'
                 elif 'Intel' in vendor:
                     manufacturer = 'Intel'
+                    print("Don't be worried if it's wrong")
                     csv_file = csv.reader(open('intel-processor/intel_core_processors_v1_8.csv', "r"), delimiter=",")
                     for row in csv_file:
                         if cpu_model == row[0]:
@@ -139,6 +140,7 @@ def get_gpu_info_linux():
 
 
 def get_gpu_info_macos():
+    global manufacturer, intel
     try:
         command = ['/usr/sbin/system_profiler', 'SPDisplaysDataType']
         output = subprocess.check_output(command, universal_newlines=True)
@@ -149,7 +151,23 @@ def get_gpu_info_macos():
             if 'Chipset Model' in line:
                 chipset_model = line.split(': ')[1].strip()
             elif 'Vendor' in line:
-                manufacturer = line.split(': ')[1].strip()
+                vendor = line.split(': ')[1].strip()
+                if 'NVIDIA' in vendor:
+                    manufacturer = 'NVIDIA'
+                    print("respect")
+                elif 'AMD' in vendor:
+                    manufacturer = 'AMD'
+                elif 'Intel' in vendor:
+                    manufacturer = 'Intel'
+                    csv_file = csv.reader(open('intel-processor/intel_core_processors_v1_8.csv', "r"), delimiter=",")
+                    for row in csv_file:
+                        if cpu_model == row[0]:
+                            if not "N/A" == row[15]:
+                                intel = row[15]
+                                print(f"IGPU: {intel}")
+                                ig = True
+                            else:
+                                print("No Integrated Graphics!")
 
         if chipset_model and manufacturer:
             print(f"GPU: {chipset_model} {manufacturer}")
