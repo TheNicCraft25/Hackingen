@@ -18,7 +18,7 @@ def get_cpu_info():
     else:
         return cpu_name  # Falls das Muster nicht gefunden wird, gib den ganzen Namen zurück
 
-
+detected_cpu = get_cpu_info()
 cpu_model = get_cpu_info()
 
 
@@ -71,6 +71,7 @@ def get_gpu_info_windows():
         if gpu_info:
             for product_name, manufacturer in gpu_info:
                 print(f"GPU: {manufacturer} {product_name}")
+                return product_name, manufacturer
         else:
             print("No NVIDIA, AMD, or Intel GPU found.")
 
@@ -93,8 +94,7 @@ def get_gpu_info_linux():
                 manufacturer = line.split(': ')[1].strip()
 
         if product and manufacturer:
-            print(f"Chipset Model: {product}")
-            print(f"Manufacturer: {manufacturer}")
+            print(f"GPU: {manufacturer} {product}")
         else:
             print("Required information not found.")
         return product, manufacturer
@@ -118,8 +118,7 @@ def get_gpu_info_macos():
                 manufacturer = line.split(': ')[1].strip()
 
         if chipset_model and manufacturer:
-            print(f"Chipset Model: {chipset_model}")
-            print(f"Manufacturer: {manufacturer}")
+            print(f"GPU: {chipset_model} {manufacturer}")
         else:
             print("Required information not found.")
         return chipset_model, manufacturer
@@ -132,22 +131,37 @@ def get_gpu_info_macos():
 platform_name = platform.system()
 
 if platform_name == "Windows":
-    get_gpu_info_windows()
+    detected_gpu = get_gpu_info_windows()
 elif platform_name == "Linux":
-    get_gpu_info_linux()
+    detected_gpu = get_gpu_info_linux()
 elif platform_name == "Darwin":
-    get_gpu_info_macos()
+    detected_gpu = get_gpu_info_macos()
 else:
     print("Your System Could Not be Identified")
 
+def questiongpu():
+    global gpu_model
+    gpu_model = detected_gpu
+    question = input(f"Is the {gpu_model} your GPU [y/n]: ")
+
+    if question.lower() == "y":
+        if gpu_model == detected_gpu:
+            print("yay")
+    elif question.lower() == "n":
+        gpu_model = input("Please enter your CPU (e.g. i5-12400): ")
+        questiongpu()
+    else:
+        print("Please enter y/n")
+        questiongpu()
 
 def questioncpu():
     global cpu_model, cpu_name
     question = input(f"Is the {cpu_model} your CPU [y/n]: ")
 
     if question.lower() == "y":
-        if cpu_model == system_info['brand_raw']:
+        if cpu_model == detected_cpu:
             print("yay")
+            questiongpu()
         else:
             Code_Name()
             print(f"CPU Model: {cpu_model}")  # Ausgabe des ermittelten CPU-Modells
@@ -162,3 +176,4 @@ def questioncpu():
 
 
 questioncpu()
+
