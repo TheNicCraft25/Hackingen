@@ -4,49 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="153ad5e0-8912-479a-be88-bc2fb342a26e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Hackintosh.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Intel.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gputest.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/Intel_Core_Processors_Analysis_Part1.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/intel_atom_processors_v1_6.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/intel_atom_processors_v1_8.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/intel_celeron_processors_v1_6.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/intel_celeron_processors_v1_8.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/intel_core_processors_v1_6.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/intel_core_processors_v1_8.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/intel_core_ultra_processors_v1_8.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/intel_itanium_processors_v1_6.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/intel_pentium_processors_v1_6.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/intel_pentium_processors_v1_8.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/intel_processors_v1_6.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/intel_processors_v1_8.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/intel_quark_SoC_v1_6.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/intel_xeon_phi_processors_v1_6.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/intel_xeon_processors_v1_6.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/intel_xeon_processors_v1_8.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/v1_1/intel_atom_processors_v1_1.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/v1_1/intel_celeron_processors_v1_1.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/v1_1/intel_core_processors_v1_1.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/v1_1/intel_itanium_processors_v1_1.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/v1_1/intel_pentium_processors_v1_1.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/v1_1/intel_quark_SoC_v1_1.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/v1_1/intel_xeon_phi_processors_v1_1.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/v1_1/intel_xeon_processors_v1_1.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/v1_2/intel_atom_processors_v1_2.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/v1_2/intel_celeron_processors_v1_2.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/v1_2/intel_core_processors_v1_2.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/v1_2/intel_itanium_processors_v1_2.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/v1_2/intel_pentium_processors_v1_2.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/v1_2/intel_quark_SoC_v1_2.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/v1_2/intel_xeon_phi_processors_v1_2.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intel-processor/v1_2/intel_xeon_processors_v1_2.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    <list default="true" id="153ad5e0-8912-479a-be88-bc2fb342a26e" name="Changes" comment="first">
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,9 +96,20 @@
       <option name="presentableId" value="Default" />
       <updated>1720864585724</updated>
     </task>
+    <task id="LOCAL-00001" summary="first">
+      <option name="closed" value="true" />
+      <created>1720948963346</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1720948963346</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="first" />
+    <option name="LAST_COMMIT_MESSAGE" value="first" />
   </component>
 </project>
