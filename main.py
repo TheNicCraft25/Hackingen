@@ -96,7 +96,7 @@ def get_gpu_info_linux():
         else:
             print("Required information not found.")
 
-        return chipset_model, manufacturer
+        return product, manufacturer
 
     except subprocess.CalledProcessError as e:
         print("Error:", e)
