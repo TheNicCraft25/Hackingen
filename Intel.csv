@@ -1,0 +1,20 @@
+Manufacturer,Modell,MacOS-Version,compatible,iGPU,restrictions
+Intel,Yonah,10.4.10-10.12,Yes,No,No SSE4.2
+Intel,Conroe,10.4.10-10.12,Yes,No,No SSE4.2
+Intel,Penryn,10.4.10-10.12,Yes,No,No SSE4.2
+Intel,Lynnfield,10.6.3-Current,Yes,No,No iGPU support 10.14+
+Intel,Clarkdale,10.6.3-Current,Yes,No,No iGPU support 10.14+
+Intel,Sandy Bridge,10.6.7-Current,Yes,Yes,-
+Intel,Ivy Bridge,10.7-Current,Yes,Yes,No iGPU support 11+
+Intel,Haswell,10.8-Current,Yes,Yes,No iGPU support 12+
+Intel,Broadwell,10.8-Current,Yes,Yes,-
+Intel,Skylake,10.11-Current,Yes,Yes,-
+Intel,Kaby Lake,10.12.4-Current,Yes,Yes,-
+Intel,Cofee Lake,10.13-Current,Yes,Yes,
+Intel,Comet Lake,10.15-Current,Yes,Yes,-
+Intel,Ice Lake,10.15.4-Current,Yes,Yes,-
+Intel,Rocket Lake,10.15.4-Current,Yes,Yes,-
+Intel,Tiger Lake,-,No,No,-
+Intel,Alder Lake,-,No,No,-
+Intel,Raptor Lake,-,No,No,-
+Intel,Arrow Lake,-,No,No,-
