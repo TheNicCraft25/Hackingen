@@ -5,30 +5,30 @@ import re
 import subprocess
 import cpuinfo
 
+system_info = cpuinfo.get_cpu_info()
+cpu_name = system_info['brand_raw']
+
 
 def get_cpu_info():
-    system_info = cpuinfo.get_cpu_info()
-    cpu_name = system_info['brand_raw']
-
-    match = re.search(r"(i\d)-(\d{4})", cpu_name)
+    match = re.search(r"(i\d)-(\d{4,5})", cpu_name)
     if match:
         cpu_series = match.group(1)
         cpu_model_number = match.group(2)
-        return f"{cpu_series}-{cpu_model_number}"
+        return f"Core {cpu_series}-{cpu_model_number}"
     else:
         return cpu_name  # Falls das Muster nicht gefunden wird, gib den ganzen Namen zurück
 
 
-cpu_model = "Core " + get_cpu_info()
+cpu_model = get_cpu_info()
 
 
 def Code_Name():
-    csv_file = csv.reader(open('intel-processor/intel_core_processors_v1_8.csv', "r"), delimiter=",")
-
-    for row in csv_file:
-        #if current rows 2nd value is equal to input, print that row
-        if cpu_model == row[0]:
-            return row[3]
+    with open('intel-processor/intel_core_processors_v1_8.csv', "r") as file:
+        csv_file = csv.reader(file, delimiter=",")
+        for row in csv_file:
+            if cpu_model == row[0]:
+                return row[3]
+    return "Code Name not found"
 
 
 print(f"CPU Model: {cpu_model}")  # Ausgabe des ermittelten CPU-Modells
@@ -84,18 +84,19 @@ def get_gpu_info_linux():
         output = subprocess.check_output(['lshw', '-C', 'display'], universal_newlines=True)
 
         lines = output.strip().split('\n')
+        product, manufacturer = None, None
 
         for line in lines:
             if 'product' in line:
                 product = line.split(': ')[1].strip()
             elif 'vendor' in line:
                 manufacturer = line.split(': ')[1].strip()
+
         if product and manufacturer:
             print(f"Chipset Model: {product}")
             print(f"Manufacturer: {manufacturer}")
         else:
             print("Required information not found.")
-
         return product, manufacturer
 
     except subprocess.CalledProcessError as e:
@@ -104,12 +105,11 @@ def get_gpu_info_linux():
 
 
 def get_gpu_info_macos():
-    global chipset_model, manufacturer
     try:
         command = ['/usr/sbin/system_profiler', 'SPDisplaysDataType']
         output = subprocess.check_output(command, universal_newlines=True)
-
         lines = output.strip().split('\n')
+        chipset_model, manufaturer = None, None
 
         for line in lines:
             if 'Chipset Model' in line:
@@ -122,7 +122,6 @@ def get_gpu_info_macos():
             print(f"Manufacturer: {manufacturer}")
         else:
             print("Required information not found.")
-
         return chipset_model, manufacturer
 
     except subprocess.CalledProcessError as e:
@@ -130,13 +129,36 @@ def get_gpu_info_macos():
         return None, None
 
 
-platform = platform.system()
+platform_name = platform.system()
 
-if platform == "Windows":
+if platform_name == "Windows":
     get_gpu_info_windows()
-elif platform == "Linux":
+elif platform_name == "Linux":
     get_gpu_info_linux()
-elif platform == "Darwin":
+elif platform_name == "Darwin":
     get_gpu_info_macos()
 else:
     print("Your System Could Not be Identified")
+
+
+def questioncpu():
+    global cpu_model, cpu_name
+    question = input(f"Is the {cpu_model} your CPU [y/n]: ")
+
+    if question.lower() == "y":
+        if cpu_model == system_info['brand_raw']:
+            print("yay")
+        else:
+            Code_Name()
+            print(f"CPU Model: {cpu_model}")  # Ausgabe des ermittelten CPU-Modells
+            print(f"Code Name: {Code_Name()}")
+    elif question.lower() == "n":
+        cpu_name = input("Please enter your CPU (e.g. i5-12400): ")
+        cpu_model = get_cpu_info()
+        questioncpu()
+    else:
+        print("Please enter y/n")
+        questioncpu()
+
+
+questioncpu()
