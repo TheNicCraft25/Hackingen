@@ -116,7 +116,7 @@ def get_gpu_info_linux():
                                 print(f"IGPU: {intel}")
                                 ig = True
                             else:
-                                print("No Integrated Graphics")
+                                print("No Integrated Graphics!")
 
             if product and manufacturer:
                 gpu_info.append((product, manufacturer))
