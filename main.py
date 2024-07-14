@@ -108,6 +108,15 @@ def get_gpu_info_linux():
                     manufacturer = 'AMD'
                 elif 'Intel' in vendor:
                     manufacturer = 'Intel'
+                    csv_file = csv.reader(open('intel-processor/intel_core_processors_v1_8.csv', "r"), delimiter=",")
+                    for row in csv_file:
+                        if cpu_model == row[0]:
+                            if not "N/A" == row[15]:
+                                intel = row[15]
+                                print(f"IGPU: {intel}")
+                                ig = True
+                            else:
+                                print("No Integrated Graphics")
 
             if product and manufacturer:
                 gpu_info.append((product, manufacturer))
