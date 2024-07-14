@@ -63,7 +63,10 @@ def get_gpu_info_windows():
                 elif 'Intel' in info:
                     manufacturer = 'Intel'
                     csv_file = csv.reader(open('intel-processor/intel_core_processors_v1_8.csv', "r"), delimiter=",")
-
+                    for row in csv_file:
+                        if cpu_model == row[0]:
+                            print(row[15])
+                            ig = True
                     product_name = info.replace('Intel', '').strip()
                     gpu_info.append((product_name, manufacturer))
 
@@ -71,7 +74,7 @@ def get_gpu_info_windows():
         if gpu_info:
             for product_name, manufacturer in gpu_info:
                 print(f"GPU: {manufacturer} {product_name}")
-                return product_name, manufacturer
+                return manufacturer, product_name
         else:
             print("No NVIDIA, AMD, or Intel GPU found.")
 
@@ -84,20 +87,38 @@ def get_gpu_info_linux():
     try:
         output = subprocess.check_output(['lshw', '-C', 'display'], universal_newlines=True)
 
+        gpu_info = []
+
         lines = output.strip().split('\n')
-        product, manufacturer = None, None
+        product = None
+        manufacturer = None
 
         for line in lines:
             if 'product' in line:
                 product = line.split(': ')[1].strip()
             elif 'vendor' in line:
-                manufacturer = line.split(': ')[1].strip()
+                vendor = line.split(': ')[1].strip()
+                if 'NVIDIA' in vendor:
+                    manufacturer = 'NVIDIA'
+                elif 'AMD' in vendor:
+                    manufacturer = 'AMD'
+                elif 'Intel' in vendor:
+                    manufacturer = 'Intel'
 
-        if product and manufacturer:
-            print(f"GPU: {manufacturer} {product}")
-        else:
-            print("Required information not found.")
-        return product, manufacturer
+            if product and manufacturer:
+                gpu_info.append((product, manufacturer))
+                product = None
+                manufacturer = None
+
+                # Entfernen von Duplikaten
+        gpu_info = list(set(gpu_info))
+
+        if gpu_info:
+            for product, manufacturer in gpu_info:
+                print(f"GPU: {manufacturer} {product}")
+            else:
+                print("No NVIDIA, AMD, or Intel GPU found.")
+        return manufacturer, product
 
     except subprocess.CalledProcessError as e:
         print("Error:", e)
@@ -121,26 +142,26 @@ def get_gpu_info_macos():
             print(f"GPU: {chipset_model} {manufacturer}")
         else:
             print("Required information not found.")
-        return chipset_model, manufacturer
+        return manufacturer, chipset_model
 
     except subprocess.CalledProcessError as e:
         print("Error:", e)
         return None, None
 
 
-platform_name = platform.system()
 
-if platform_name == "Windows":
-    detected_gpu = get_gpu_info_windows()
-elif platform_name == "Linux":
-    detected_gpu = get_gpu_info_linux()
-elif platform_name == "Darwin":
-    detected_gpu = get_gpu_info_macos()
-else:
-    print("Your System Could Not be Identified")
 
 def questiongpu():
-    global gpu_model
+    global gpu_model, detected_gpu
+    platform_name = platform.system()
+    if platform_name == "Windows":
+        detected_gpu = get_gpu_info_windows()
+    elif platform_name == "Linux":
+        detected_gpu = get_gpu_info_linux()
+    elif platform_name == "Darwin":
+        detected_gpu = get_gpu_info_macos()
+    else:
+        print("Your System Could Not be Identified")
     gpu_model = detected_gpu
     question = input(f"Is the {gpu_model} your GPU [y/n]: ")
 
@@ -160,12 +181,12 @@ def questioncpu():
 
     if question.lower() == "y":
         if cpu_model == detected_cpu:
-            print("yay")
             questiongpu()
         else:
             Code_Name()
             print(f"CPU Model: {cpu_model}")  # Ausgabe des ermittelten CPU-Modells
             print(f"Code Name: {Code_Name()}")
+            questiongpu()
     elif question.lower() == "n":
         cpu_name = input("Please enter your CPU (e.g. i5-12400): ")
         cpu_model = get_cpu_info()
