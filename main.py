@@ -1,6 +1,5 @@
 import platform
 import csv
-import os
 import re
 import subprocess
 import cpuinfo
@@ -23,7 +22,7 @@ detected_cpu = get_cpu_info()
 cpu_model = get_cpu_info()
 
 
-def Code_Name():
+def code_name():
     with open('intel-processor/intel_core_processors_v1_8.csv', "r") as file:
         csv_file = csv.reader(file, delimiter=",")
         for row in csv_file:
@@ -33,7 +32,7 @@ def Code_Name():
 
 
 print(f"CPU Model: {cpu_model}")  # Ausgabe des ermittelten CPU-Modells
-print(f"Code Name: {Code_Name()}")
+print(f"Code Name: {code_name()}")
 
 
 def get_gpu_info_windows():
@@ -232,9 +231,9 @@ def questioncpu():
         if cpu_model == detected_cpu:
             questiongpu()
         else:
-            Code_Name()
+            code_name()
             print(f"CPU Model: {cpu_model}")  # Ausgabe des ermittelten CPU-Modells
-            print(f"Code Name: {Code_Name()}")
+            print(f"Code Name: {code_name()}")
             questiongpu()
     elif question.lower() == "n":
         cpu_name2 = input("Please enter your CPU (e.g. i5-12400): ")

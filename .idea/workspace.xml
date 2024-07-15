@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="153ad5e0-8912-479a-be88-bc2fb342a26e" name="Changes" comment="linux integrated graphics">
+    <list default="true" id="153ad5e0-8912-479a-be88-bc2fb342a26e" name="Changes" comment="macOS integrated graphics">
+      <change afterPath="$PROJECT_DIR$/.idea/developer-tools.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/qodana.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -17,11 +20,15 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="Dockerfile" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -46,15 +53,35 @@
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/Niclas/Desktop/gpt.py",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
     "two.files.diff.last.used.file": "C:/Users/Niclas/Desktop/gpt.py"
   }
 }]]></component>
+  <component name="QodanaHighlightedReportService">
+    <option name="localRunNotPublishedPersistedInfo">
+      <LocalReportPersistedInfo>
+        <option name="path" value="C:\Users\Niclas\AppData\Local\Temp\qodana_output\qodana.sarif.json" />
+        <option name="reportGuid" value="7d21819e-e9a3-4419-8de5-fef54b0be1e2" />
+        <option name="reportName" value="Hackintosh/qodana/2024-07-15" />
+      </LocalReportPersistedInfo>
+    </option>
+  </component>
+  <component name="QodanaIsSelectedPersistenceService">
+    <option name="selectedOrLoading" value="true" />
+  </component>
+  <component name="QodanaReportsService">
+    <option name="descriptions">
+      <ReportDescription localRun="true" path="C:\Users\Niclas\AppData\Local\Temp\qodana_output\qodana.sarif.json" reportGuid="7d21819e-e9a3-4419-8de5-fef54b0be1e2" reportId="Hackintosh/qodana/2024-07-15" />
+    </option>
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="I:\Coding\Python\Hackintosh\intel-processor" />
       <recent name="I:\Coding\Python\Hackintosh" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="I:\Coding\Python\Hackintosh\intel-processor" />
+      <recent name="I:\Coding\Python\Hackintosh\" />
       <recent name="I:\Coding\Python\Hackintosh" />
     </key>
   </component>
@@ -79,6 +106,10 @@
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile" />
       <method v="2" />
     </configuration>
   </component>
@@ -186,7 +217,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720980357945</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="macOS integrated graphics">
+      <option name="closed" value="true" />
+      <created>1720980686624</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1720980686624</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -195,7 +234,8 @@
     <MESSAGE value="question Cpu" />
     <MESSAGE value="question Gpu" />
     <MESSAGE value="linux integrated graphics" />
-    <option name="LAST_COMMIT_MESSAGE" value="linux integrated graphics" />
+    <MESSAGE value="macOS integrated graphics" />
+    <option name="LAST_COMMIT_MESSAGE" value="macOS integrated graphics" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
